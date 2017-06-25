@@ -1,0 +1,1 @@
+departmentId | subjectId | studyYear | studySemester
