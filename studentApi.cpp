@@ -55,6 +55,7 @@ bool StudentApi::readAllStudents(){
 
     return true;
 }
+
 bool StudentApi::writeAllStudents(){
     file.open(fileName, std::fstream::out | std::fstream::trunc);
     file << header << endl;
@@ -71,17 +72,20 @@ string StudentApi::error(){
     _error = "";
     return tmpErr;
 }
+
 string StudentApi::getHeader(){
     file.open(fileName);
     getline(file, header);
     file.close();
     return header;
 }
+
 string StudentApi::parseOutput (Student s){
     string out = "";
     out = toString(s.id) + "," + s.firstName + "," + s.lastName + "," + s.birthdate + "," + s.email + "," + s.gender + "," + s.jmbg + "," + toString(s.departmentId);
     return out;
 }
+
 bool StudentApi::save(string firstName, string lastName, string birthdate, string email, char gender, string jmbg, string departmentName){
     Student studentIn;
 
@@ -132,6 +136,7 @@ bool StudentApi::save(string firstName, string lastName, string birthdate, strin
 
     return true;
 }
+
 bool StudentApi::deleteById(unsigned id){
     bool deleted = false;
     readAllStudents();
@@ -148,6 +153,7 @@ bool StudentApi::deleteById(unsigned id){
     if(!deleted) setError("ID doesn't exist.");
     return deleted;
 }
+
 vector<Student> StudentApi::selectById(unsigned id) {
     vector<Student> StudentsOut;
     readAllStudents();
@@ -165,6 +171,7 @@ vector<Student> StudentApi::selectById(unsigned id) {
     }
     return StudentsOut;
 }
+
 bool StudentApi::updateById(unsigned id, string firstName, string lastName, string birthdate, string email, char gender, string jmbg, string departmentName){
     bool found = false;
     vector<Student>::iterator it;
